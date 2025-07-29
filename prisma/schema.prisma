@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  UserID   Int    @id @default(autoincrement())
+  UserName String @db.VarChar(100)
+  Password String @db.VarChar(300)
+}
+
+model items {
+  ItemID     Int      @id @default(autoincrement())
+  ItemType   String   @db.VarChar(100)
+  ItemTitle  String   @db.VarChar(300)
+  ItemAuther String   @db.VarChar(300)
+  status     Status   @default(available)
+  imageUrl    String?    
+}
+
+enum Status {
+  available
+  borrowed
+}
