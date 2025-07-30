@@ -1,13 +1,11 @@
 import Navbar from "@/app/(components)/Navbar";
 import BookCard from "@/app/(components)/Bookcard";
-import FetchBooks from "@/app/(utilitys)/fetchbooks";
+import FetchBooks from "@/app/(actions)/fetchbooks";
 
 
 
 async function BooksPage() {
   const books =  await FetchBooks();
-  console.log("aa ja chhe")
-  console.log(books)
   return (
     <div>
       <Navbar role="Librarian" />

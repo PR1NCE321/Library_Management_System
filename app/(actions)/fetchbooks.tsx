@@ -1,8 +1,6 @@
 "use server";
 import { PrismaClient } from "../generated/prisma";
 
-
-
 class Book {
   id: number;
   title: string;

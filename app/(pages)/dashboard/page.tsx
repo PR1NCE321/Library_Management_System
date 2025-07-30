@@ -1,5 +1,5 @@
 import Navbar from "@/app/(components)/Navbar";
-import FetchBooks from "@/app/(utilitys)/fetchbooks";
+import FetchBooks from "@/app/(actions)/fetchbooks";
 import { accessSync } from "fs";
 
 async function AdminDashboard() {
