@@ -1,5 +1,9 @@
+
 import { BookOpen, UserCircle } from 'lucide-react';
 import BorrowBook from '../(actions)/borrowbook';
+import { updateBook } from '../(actions)/updatebook';
+import { useState } from 'react';
+
 
 interface Book {
   id: number;
@@ -10,8 +14,11 @@ interface Book {
 }
 
 export default function BookCard({ book }: { book: Book }) {
+  const [loading, setLoading] = useState(false);
+
   const isAvailable = book.status.toLowerCase() === 'available';
 
+  
   return (
     <div className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow hover:shadow-lg transition-all duration-300">
 
@@ -42,14 +49,21 @@ export default function BookCard({ book }: { book: Book }) {
           {book.author}
         </div>
         <button onClick={BorrowBook}
-          className={`w-full rounded-md py-2 text-sm font-semibold text-white transition-colors duration-200 ${
-            isAvailable
-              ? 'bg-blue-600 hover:bg-blue-700'
-              : 'cursor-not-allowed bg-gray-400'
-          }`}
+          className={`w-full rounded-md py-2 text-sm font-semibold text-white transition-colors duration-200 ${isAvailable
+            ? 'bg-blue-600 hover:bg-blue-700'
+            : 'cursor-not-allowed bg-gray-400'
+            }`}
           disabled={!isAvailable}
         >
           {isAvailable ? 'Borrow Now' : 'Unavailable'}
+        </button>
+        <button
+          onClick={handleUpdate}
+          disabled={loading}
+          className={`w-full bg-yellow-500 hover:bg-yellow-600 text-white font-semibold text-sm py-2 px-4 rounded-xl transition-colors duration-200 ${loading ? 'opacity-70 cursor-not-allowed' : ''
+            }`}
+        >
+          {loading ? 'Updating...' : 'Update'}
         </button>
       </div>
     </div>
